@@ -1,0 +1,21 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: valkey-config
+  namespace: valkey-demo
+data:
+  valkey.conf: |
+    # Valkey in cluster mode
+    cluster-enabled yes
+    cluster-config-file /data/nodes.conf
+    cluster-node-timeout 5000
+
+    # Persistence
+    appendonly yes
+    appendfsync everysec
+    dir /data
+
+    port 6379
+    # io-threads 2
+    # maxmemory 512mb
+    # maxmemory-policy allkeys-lru

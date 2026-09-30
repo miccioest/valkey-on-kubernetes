@@ -1,0 +1,16 @@
+# Headless service: clusterIP None gives every pod stable DNS
+# (valkey-0.valkey-cluster.valkey-demo.svc.cluster.local, ...)
+apiVersion: v1
+kind: Service
+metadata:
+  name: valkey-cluster
+  namespace: valkey-demo
+spec:
+  clusterIP: None
+  selector:
+    app: valkey
+  ports:
+    - name: client
+      port: 6379
+    - name: gossip
+      port: 16379

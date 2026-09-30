@@ -1,0 +1,12 @@
+# Keep at least 4 of 6 pods up during voluntary disruptions
+# (node drains, upgrades) so the cluster stays healthy.
+apiVersion: policy/v1
+kind: PodDisruptionBudget
+metadata:
+  name: valkey
+  namespace: valkey-demo
+spec:
+  minAvailable: 4
+  selector:
+    matchLabels:
+      app: valkey
